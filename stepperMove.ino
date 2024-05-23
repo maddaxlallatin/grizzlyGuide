@@ -1,6 +1,7 @@
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 #include <Keypad.h>
+#include <ezButton.h>
 
 char x;
 String room = "";
@@ -9,6 +10,10 @@ const int DirX = 5;
 const int StepY = 3;
 const int DirY = 6;
 const int rotations = 15;
+
+ezButton limitSwitch1(9); 
+ezButton limitSwitch2(10); 
+
 
 void setup() {
 
@@ -43,34 +48,109 @@ void receiveEvent(int bytes) {
 }
 
 void loop() {
-
+ 
 
   if (room == "A123") {
-    moveStepper(2, StepY, DirY, 30);
-    moveStepper(2, StepX, DirX, 30);
+    moveRight(50);
+    moveLeft(50);
+    moveUp(50);
+    moveDown(50);
+
   
     resetRoom();
   }
   else if (room == "A321") {
 
-    moveStepper(2, StepY, DirY, 40);
+    moveStepper(40);
     
     resetRoom();
 
-   } 
+   } else if (room == "A000"){
+    home();
+    resetRoom();
+   }
 }
 
-void moveStepper(int seconds, int stepperVal, int stepperDir, int distance){
+void moveStepper(int distance){
 
-digitalWrite(stepperDir, HIGH);
 
 int turns = ((distance/rotations) * 1600);
 for (int x = 0; x < turns; x++) { 
-      digitalWrite(stepperVal, HIGH);
-      delayMicroseconds(500);
-      digitalWrite(stepperVal, LOW);
-      delayMicroseconds(500);
+  
+      digitalWrite(StepX, HIGH);
+      digitalWrite(StepY, HIGH);
+      delayMicroseconds(250);
+      digitalWrite(StepX, LOW);
+      digitalWrite(StepY, LOW);
+      delayMicroseconds(250);
+
     }
+}
+
+void moveRight(int distance){
+  digitalWrite(DirX, HIGH);   
+  digitalWrite(DirY, HIGH); 
+  moveStepper(distance);
+}
+
+
+void moveLeft(int distance){
+  digitalWrite(DirX, LOW);  
+  digitalWrite(DirY, LOW); 
+  moveStepper(distance);
+}
+
+void moveDown(int distance){
+  digitalWrite(DirX, HIGH);   // Enables the motor to move right
+  digitalWrite(DirY, LOW);  // Enables the motor to move right
+  moveStepper(distance);
+}
+
+void moveUp(int distance){
+  digitalWrite(DirX, LOW);   // Enables the motor to move right
+  digitalWrite(DirY, HIGH);  // Enables the motor to move right
+  moveStepper(distance);
+}
+void home(){
+   
+digitalWrite(DirY, HIGH);
+digitalWrite(DirX, HIGH);
+
+bool state = true;
+  digitalWrite(DirX, HIGH);   // Enables the motor to move right
+  digitalWrite(DirY, LOW);
+while (state == true){
+   limitSwitch1.loop(); // MUST call the loop() function first
+    
+   digitalWrite(StepX, HIGH);
+      digitalWrite(StepY, HIGH);
+      delayMicroseconds(250);
+      digitalWrite(StepX, LOW);
+      digitalWrite(StepY, LOW);
+      delayMicroseconds(250);
+
+  if(limitSwitch1.isPressed())
+    break;
+     
+}
+
+digitalWrite(DirX, HIGH);   
+  digitalWrite(DirY, HIGH); 
+while (state == true){
+   limitSwitch2.loop(); // MUST call the loop() function first
+
+   digitalWrite(StepX, HIGH);
+      digitalWrite(StepY, HIGH);
+      delayMicroseconds(250);
+      digitalWrite(StepX, LOW);
+      digitalWrite(StepY, LOW);
+      delayMicroseconds(250);
+
+  if(limitSwitch2.isPressed())
+    break;
+     
+}
+
 }
 
 void resetRoom() {
