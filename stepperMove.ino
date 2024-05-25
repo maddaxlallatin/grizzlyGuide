@@ -71,11 +71,11 @@ void loop() {
    }
 }
 
-void moveStepper(int distance){
+void moveStepper(double distance){
 
 
-int turns = ((distance/rotations) * 1600);
-for (int x = 0; x < turns; x++) { 
+double turns = ((distance/rotations) * 1600);
+for (double x = 0; x < turns; x++) { 
   
       digitalWrite(StepX, HIGH);
       digitalWrite(StepY, HIGH);
@@ -87,26 +87,26 @@ for (int x = 0; x < turns; x++) {
     }
 }
 
-void moveRight(int distance){
+void moveRight(double distance){
   digitalWrite(DirX, HIGH);   
   digitalWrite(DirY, HIGH); 
   moveStepper(distance);
 }
 
 
-void moveLeft(int distance){
+void moveLeft(double distance){
   digitalWrite(DirX, LOW);  
   digitalWrite(DirY, LOW); 
   moveStepper(distance);
 }
 
-void moveDown(int distance){
+void moveDown(double distance){
   digitalWrite(DirX, HIGH);   // Enables the motor to move right
   digitalWrite(DirY, LOW);  // Enables the motor to move right
   moveStepper(distance);
 }
 
-void moveUp(int distance){
+void moveUp(double distance){
   digitalWrite(DirX, LOW);   // Enables the motor to move right
   digitalWrite(DirY, HIGH);  // Enables the motor to move right
   moveStepper(distance);
@@ -130,7 +130,8 @@ while (state == true){
       delayMicroseconds(250);
 
   if(limitSwitch1.isPressed())
-    break;
+break;
+  
      
 }
 
@@ -146,10 +147,16 @@ while (state == true){
       digitalWrite(StepY, LOW);
       delayMicroseconds(250);
 
-  if(limitSwitch2.isPressed())
+  if(limitSwitch2.isPressed()){
+
     break;
+  }
+  
      
 }
+    moveUp(130);
+    moveLeft(15);
+
 
 }
 
