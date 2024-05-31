@@ -54,6 +54,9 @@ void loop()
       lcd.print("Go  to");
       lcd.setCursor((16 - (room.length()))/2, 1);
       lcd.print(room);
+      if(room == "A" || "B" || "C" || "D"){
+        room+= "1";
+      }
       transmit();
       room = "";
       break;
@@ -75,7 +78,7 @@ void loop()
 	    delay(200);
   	  digitalWrite(LED_BUILTIN, LOW);
 
-      if (room.length() >= 4) break;
+      if (room.length() >= 4  && room.length() > 1) break;
       if (room.length() == 0 && !(pressedKey == ('A') || pressedKey == ('B') || pressedKey == ('C') || pressedKey == ('D') )) break;
       if (room.length() >= 1 && (pressedKey == ('A') || pressedKey == ('B') || pressedKey == ('C') || pressedKey == ('D') )) break;
 
