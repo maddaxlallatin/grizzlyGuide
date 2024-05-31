@@ -13,10 +13,6 @@ const int rotations = 15;
 const double constant = 3.56;
 
 
-String aLeft[] = { "A123", "A122", "A121", "A120", "A119", "A118", "A117", "A116" };
-String aBack[] = {};
-String aRight[] = {};
-
 
 
 ezButton limitSwitch1(9);
@@ -49,45 +45,17 @@ void receiveEvent(int bytes) {
   if (x == 'R') {
     resetRoom();
   } else {
-    Serial.println("Recieved");
     room += x;
-    Serial.println(room);
+
   }
 }
 
 void loop() {
+  Serial.println(room);
 
 
-  if (room == "A123") {
-    moveRight(50);
-    moveLeft(50);
-    moveUp(50);
-    moveDown(50);
-
-
-    resetRoom();
-  } else if (room == "A321") {
-
-    moveStepper(40);
-
-    resetRoom();
-
-  } else if (room == "A000") {
-    home();
-    resetRoom();
-    return;
-  } else if (room == "B1") {
-    home();
-    delay(3000);
-    moveLeft(6);
-    moveUp(9);
-    moveLeft(5.5);
-    moveUp(20.5);
-    moveRight(17);
-    moveUp(8);
-    resetRoom();
-    return;
-  } else if (room == "A1") {
+if(room[0] == 'A'){
+if(room == "A0"){
     home();
     delay(3000);
     moveLeft(6);
@@ -98,13 +66,121 @@ void loop() {
     moveUp(8);
     resetRoom();
     return;
-  } else if (room == "C1") {
+    }
+    room.remove(0, 1);
+
+  int roomNum = (room.toInt()/10);
+
+    if(roomNum>= 116 && roomNum<= 124){
+      home();
+      delay(3000);
+    moveLeft(6);
+    moveUp(9);
+    moveLeft(13.5);
+    moveUp(20.5);
+    moveLeft(10);
+    
+    resetRoom();
+    return;
+    }
+
+    if(roomNum>=101 && roomNum<=110){
+       home();
+      delay(3000);
+    moveLeft(6);
+    moveUp(9);
+    moveLeft(13.5);
+    moveUp(34);
+    moveLeft(10);
+    
+    resetRoom();
+    return;
+    }
+    
+if(roomNum>= 111 && roomNum<= 115){
+    home();
+    delay(3000);
+    moveLeft(6);
+    moveUp(9);
+    moveLeft(13.5);
+    moveUp(20.5);
+    moveLeft(18);
+    moveUp(8);
+    resetRoom();
+    return;
+    }
+    
+    
+
+}
+
+else if(room[0] == 'B'){
+  if(room == "B0"){
+     home();
+    delay(3000);
+    moveLeft(6);
+    moveUp(9);
+    moveLeft(5.5);
+    moveUp(20.5);
+    moveRight(17);
+    moveUp(8);
+    resetRoom();
+    return;
+  }
+  room.remove(0, 1);
+
+  int roomNum = (room.toInt()/10);
+
+    if(roomNum>= 116 && roomNum<= 124){
     home();
     delay(3000);
     moveLeft(6);
     moveUp(9);
     moveLeft(5.5);
+    moveUp(20.5);
+    moveRight(9);
+    resetRoom();
+    return;
+    
+    }
+
+    if(roomNum>=101 && roomNum<=110){
+     home();
+    delay(3000);
+    moveLeft(6);
+    moveUp(9);
+    moveLeft(5.5);
     moveUp(35);
+    moveRight(14);
+    resetRoom();
+    return;
+     
+    }
+    
+if(roomNum>= 111 && roomNum<= 115){
+    home();
+    delay(3000);
+    moveLeft(6);
+    moveUp(9);
+    moveLeft(5.5);
+    moveUp(20.5);
+    moveRight(17);
+    moveUp(8);
+    resetRoom();
+    return;
+    
+    }
+    
+}
+
+else if(room[0] == 'C'){
+  if(room == "C0"){
+    home();
+    delay(3000);
+    moveLeft(6);
+    moveUp(9);
+    moveLeft(5.5);
+    moveUp(33);
     moveLeft(5);
     moveUp(5);
     delay(3000);
@@ -115,13 +191,81 @@ void loop() {
     moveDown(9);
     resetRoom();
     return;
-  } else if (room == "D1") {
+  }
+
+  room.remove(0, 1);
+
+  int roomNum = (room.toInt()/10);
+
+    if(roomNum>= 116 && roomNum<= 124){
+    
     home();
     delay(3000);
     moveLeft(6);
     moveUp(9);
     moveLeft(5.5);
-    moveUp(35);
+    moveUp(33);
+    moveLeft(5);
+    moveUp(5);
+    delay(3000);
+    moveUp(39);
+    delay(3000);
+    moveDown(5);
+    moveLeft(5);
+    moveDown(14);
+    moveLeft(15);
+    resetRoom();
+    return;
+    }
+
+    if(roomNum>=101 && roomNum<=110){
+     home();
+    delay(3000);
+    moveLeft(6);
+    moveUp(9);
+    moveLeft(5.5);
+    moveUp(33);
+    moveLeft(5);
+    moveUp(5);
+    delay(3000);
+    moveUp(39);
+    delay(3000);
+    moveDown(5);
+    moveLeft(10);
+    resetRoom();
+    return;
+     
+    }
+    
+if(roomNum>= 111 && roomNum<= 115){
+    home();
+    delay(3000);
+    moveLeft(6);
+    moveUp(9);
+    moveLeft(5.5);
+    moveUp(33);
+    moveLeft(5);
+    moveUp(5);
+    delay(3000);
+    moveUp(39);
+    delay(3000);
+    moveDown(5);
+    moveLeft(20);
+    moveDown(9);
+    resetRoom();
+    return;
+    
+    }
+}
+
+else if(room[0] == 'D'){
+  if(room == "D0"){
+    home();
+    delay(3000);
+    moveLeft(6);
+    moveUp(9);
+    moveLeft(5.5);
+    moveUp(33);
     moveLeft(5);
     moveUp(5);
     delay(3000);
@@ -131,6 +275,112 @@ void loop() {
     moveRight(20);
     moveDown(9);
     resetRoom();
+  }
+
+  room.remove(0, 1);
+
+  int roomNum = (room.toInt()/10);
+
+    if(roomNum>= 116 && roomNum<= 124){
+     home();
+    delay(3000);
+    moveLeft(6);
+    moveUp(9);
+    moveLeft(5.5);
+    moveUp(33);
+    moveLeft(5);
+    moveUp(5);
+    delay(3000);
+    moveUp(40);
+    delay(3000);
+    moveDown(5);
+    moveRight(5);
+    moveDown(15);
+    moveRight(10);
+    resetRoom();
+    
+    }
+
+    if(roomNum>=101 && roomNum<=110){
+     
+      home();
+    delay(3000);
+    moveLeft(6);
+    moveUp(9);
+    moveLeft(5.5);
+    moveUp(33);
+    moveLeft(5);
+    moveUp(5);
+    delay(3000);
+    moveUp(40);
+    delay(3000);
+    moveDown(5);
+    moveRight(15);
+    resetRoom();
+    }
+    
+if(roomNum>= 111 && roomNum<= 115){
+     home();
+    delay(3000);
+    moveLeft(6);
+    moveUp(9);
+    moveLeft(5.5);
+    moveUp(33);
+    moveLeft(5);
+    moveUp(5);
+    delay(3000);
+    moveUp(40);
+    delay(3000);
+    moveDown(5);
+    moveRight(20);
+    moveDown(9);
+    resetRoom();
+    
+    }
+}
+
+else if (room == "0") {
+    home();
+    resetRoom();
+    return;
+  } 
+   else if (room == "1"){
+    home();
+    delay(3000);
+    moveLeft(5);
+    moveDown(9);
+    moveLeft(19);
+    resetRoom();
+    return;
+  } 
+   else if (room == "2"){
+    home();
+    delay(3000);
+    moveLeft(5);
+    moveDown(9);
+    moveLeft(8);
+    resetRoom();
+    return;
+
+  
+  } 
+   else if (room == "3"){
+    home();
+    delay(3000);
+    moveLeft(5);
+    moveDown(9);
+    moveLeft(19);
+    moveUp(10);
+    resetRoom();
+    return;
+  } 
+   else if (room == "4"){
+    home();
+    delay(3000);
+    moveLeft(6);
+    moveUp(10);
+    moveLeft(10);
+       resetRoom();
     return;
   }
 }
@@ -217,6 +467,7 @@ void home() {
   moveUp(36.5);
   moveLeft(6);
 }
+
 
 void resetRoom() {
   room = "";
