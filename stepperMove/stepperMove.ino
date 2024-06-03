@@ -386,24 +386,21 @@ else if (room == "0") {
 }
 
 void moveStepper(double distance) {
-
-
-  double turns = ((distance / rotations) * 1600 * constant);
-  for (double x = 0; x < turns; x++) {
-
-    digitalWrite(StepX, HIGH);
-    digitalWrite(StepY, HIGH);
-    delayMicroseconds(250);
-    digitalWrite(StepX, LOW);
-    digitalWrite(StepY, LOW);
-    delayMicroseconds(250);
+  double turns = ((distance / rotations) * 1600 * constant); // Specify the amount of time the steppers will move
+  for (double x = 0; x < turns; x++) { 
+    digitalWrite(StepX, HIGH); // Turns on X Stepper Motor
+    digitalWrite(StepY, HIGH); // Turns on Y Stepper Motor
+    delayMicroseconds(250); // Delay 250 microseconds
+    digitalWrite(StepX, LOW); // Turns off X Stepper Motor
+    digitalWrite(StepY, LOW);// Turns off Y Stepper Motor
+    delayMicroseconds(250); // Delay 250 ms
   }
 }
 
 void moveRight(double distance) {
-  digitalWrite(DirX, HIGH);
-  digitalWrite(DirY, HIGH);
-  moveStepper(distance);
+  digitalWrite(DirX, HIGH); //Sets the steppers to turn in the correct direction for the movment
+  digitalWrite(DirY, HIGH); //Sets the steppers to turn in the correct direction for the movment
+  moveStepper(distance); // calls the moveStepper function for the distance specified
 }
 
 
