@@ -335,11 +335,11 @@ if(temp>= 111 && temp<= 115){
     moveRight(20);
     moveDown(9);
     resetRoom();
-    
+
     }
 }
 
-else if (room == "0") {
+else if (room == "9" || room == "90") {
     home();
     resetRoom();
     return;
