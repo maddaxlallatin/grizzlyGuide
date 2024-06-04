@@ -69,9 +69,9 @@ if(room == "A0"){
     }
     room.remove(0, 1);
 
-  int roomNum = (room.toInt()/10);
+  int temp = (room.toInt()/10);
 
-    if(roomNum>= 116 && roomNum<= 124){
+    if(temp>= 116 && temp<= 124){
       home();
       delay(3000);
     moveLeft(6);
@@ -84,7 +84,7 @@ if(room == "A0"){
     return;
     }
 
-    if(roomNum>=101 && roomNum<=110){
+    if(temp>=101 && temp<=110){
        home();
       delay(3000);
     moveLeft(6);
@@ -97,7 +97,7 @@ if(room == "A0"){
     return;
     }
     
-if(roomNum>= 111 && roomNum<= 115){
+if(temp>= 111 && temp<= 115){
     home();
     delay(3000);
     moveLeft(6);
@@ -129,9 +129,9 @@ else if(room[0] == 'B'){
   }
   room.remove(0, 1);
 
-  int roomNum = (room.toInt()/10);
+  int temp = (room.toInt()/10);
 
-    if(roomNum>= 116 && roomNum<= 124){
+    if(temp>= 116 && temp<= 124){
     home();
     delay(3000);
     moveLeft(6);
@@ -144,7 +144,7 @@ else if(room[0] == 'B'){
     
     }
 
-    if(roomNum>=101 && roomNum<=110){
+    if(temp>=101 && temp<=110){
      home();
     delay(3000);
     moveLeft(6);
@@ -157,7 +157,7 @@ else if(room[0] == 'B'){
      
     }
     
-if(roomNum>= 111 && roomNum<= 115){
+if(temp>= 111 && temp<= 115){
     home();
     delay(3000);
     moveLeft(6);
@@ -195,9 +195,9 @@ else if(room[0] == 'C'){
 
   room.remove(0, 1);
 
-  int roomNum = (room.toInt()/10);
+  int temp = (room.toInt()/10);
 
-    if(roomNum>= 116 && roomNum<= 124){
+    if(temp>= 116 && temp<= 124){
     
     home();
     delay(3000);
@@ -218,7 +218,7 @@ else if(room[0] == 'C'){
     return;
     }
 
-    if(roomNum>=101 && roomNum<=110){
+    if(temp>=101 && temp<=110){
      home();
     delay(3000);
     moveLeft(6);
@@ -237,7 +237,7 @@ else if(room[0] == 'C'){
      
     }
     
-if(roomNum>= 111 && roomNum<= 115){
+if(temp>= 111 && temp<= 115){
     home();
     delay(3000);
     moveLeft(6);
@@ -279,9 +279,9 @@ else if(room[0] == 'D'){
 
   room.remove(0, 1);
 
-  int roomNum = (room.toInt()/10);
+  int temp = (room.toInt()/10);
 
-    if(roomNum>= 116 && roomNum<= 124){
+    if(temp>= 116 && temp<= 124){
      home();
     delay(3000);
     moveLeft(6);
@@ -301,7 +301,7 @@ else if(room[0] == 'D'){
     
     }
 
-    if(roomNum>=101 && roomNum<=110){
+    if(temp>=101 && temp<=110){
      
       home();
     delay(3000);
@@ -319,7 +319,7 @@ else if(room[0] == 'D'){
     resetRoom();
     }
     
-if(roomNum>= 111 && roomNum<= 115){
+if(temp>= 111 && temp<= 115){
      home();
     delay(3000);
     moveLeft(6);
@@ -344,7 +344,7 @@ else if (room == "0") {
     resetRoom();
     return;
   } 
-   else if (room == "1"){
+   else if (room == "1"|| room == "10"){
     home();
     delay(3000);
     moveLeft(5);
@@ -353,7 +353,7 @@ else if (room == "0") {
     resetRoom();
     return;
   } 
-   else if (room == "2"){
+   else if (room == "2"|| room == "20"){
     home();
     delay(3000);
     moveLeft(5);
@@ -364,7 +364,7 @@ else if (room == "0") {
 
   
   } 
-   else if (room == "3"){
+   else if (room == "3"|| room == "30"){
     home();
     delay(3000);
     moveLeft(5);
@@ -374,7 +374,7 @@ else if (room == "0") {
     resetRoom();
     return;
   } 
-   else if (room == "4"){
+   else if (room == "4" || room == "40"){
     home();
     delay(3000);
     moveLeft(6);
@@ -461,7 +461,7 @@ void home() {
       break;
     }
   }
-  moveUp(36.5);
+  moveUp(38);
   moveLeft(6);
 }
 
