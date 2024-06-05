@@ -387,7 +387,7 @@ else if (room == "9" || room == "90") {
 
 void moveStepper(double distance) {
   double turns = ((distance / rotations) * 1600 * constant); // Specify the amount of time the steppers will move
-  for (double x = 0; x < turns; x++) { 
+  for (double x = 0; x < turns; x++) { //loops for amount of turns calculated
     digitalWrite(StepX, HIGH); // Turns on X Stepper Motor
     digitalWrite(StepY, HIGH); // Turns on Y Stepper Motor
     delayMicroseconds(250); // Delay 250 microseconds
