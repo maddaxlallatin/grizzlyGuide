@@ -1,5 +1,5 @@
 # grizzlyGuide
-
+This project features a map of my school integrated with a gantry system controlled by Two Arduino Unos and a CNC shield. Using stepper motors, it moves a bear equipped with magnets through the hallways, guiding new students to their selected rooms.
 # Wiring Guide
 ![Image of Wiring Diagram](https://github.com/maddaxlallatin/grizzlyGuide/blob/main/grizzlyGuide_bb.png)
 
